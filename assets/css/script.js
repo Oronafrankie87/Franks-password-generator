@@ -108,12 +108,32 @@ function generatePassword() {
       && specialChoice == false
     ) {
       alert("Error no options selected");
-      generatePassword();
+      // generatePassword();
+      return "";
     } else {
-      return ()
+      var megaArray = [];
+      if(upperChoice) {
+        megaArray = megaArray.concat(uppercaseLetters);
+      }
+      if(lowerChoice) {
+        megaArray = megaArray.concat(lowercaseLetters);
+      }
+      if (numberChoice) {
+        megaArray = megaArray.concat(numbers);
+      }
+      if (specialChoice) {
+        megaArray = megaArray.concat(specialCharacters);
+      }
+      var passwordString = "";
+      for (var i = 0; i < passwordLength; i++) {
+        var randomIndex = Math.floor(Math.random() * megaArray.length);
+        passwordString += megaArray[randomIndex];
+      }
+      return passwordString;
     }
   } else {
     alert("invalid");
+    return "";
   }
 }
 
