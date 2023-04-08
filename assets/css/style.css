@@ -30,6 +30,10 @@ header {
   color: black;
 }
 
+h2 {
+  display: flex;
+  justify-content: center;
+}
 .card {
   background-color: whitesmoke;
   border-radius: 50px;
