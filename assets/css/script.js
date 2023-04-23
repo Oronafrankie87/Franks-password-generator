@@ -1,4 +1,5 @@
 var generateBtn = document.querySelector("#generate");
+
 var lowercaseLetters = [
   "a",
   "b",
@@ -91,31 +92,39 @@ var specialCharacters = [
 var passwordString = "";
 var megaArray = [];
 
+//The following code was written with the assistance of Fullstack bootcamp TAs and tutor.  It was put through ChatGPT to understand how it works.  This helped by deconstructing it and cementing how it works
+
+
+//The following identifies a generatePassword function that first prompts the user with "Please enter a password length of 8 to 128 characters"
 function generatePassword() {
   var passwordLength = prompt(
     "Please enter a Password length of 8 to 128 characters"
   );
+  //The following IF statement states that if the password length is >=8 or <=128 the four following prompts are given to confirm they want those criteria met.
   if (passwordLength >= 8 && passwordLength <= 128) {
     var upperChoice = confirm("Do you want uppercase letters");
     var lowerChoice = confirm("Do you want lowercase letters");
     var numberChoice = confirm("Do you want numbers");
     var specialChoice = confirm("Do you want characters");
-
+   //This IF statement states that if they dont select any of the four choices above the allert(Error no options selected) return
     if (
-      upperChoice == false 
-      && lowerChoice == false
-      && numberChoice == false
-      && specialChoice == false
+      upperChoice == false &&
+      lowerChoice == false &&
+      numberChoice == false &&
+      specialChoice == false
     ) {
-      alert("Error no options selected");
+      //If statements always need to return a value, this value returned is the alert string
+      return alert("Error no options selected");
       // generatePassword();
-      return "";
+      //It at least one of the options from above is selected the else statement is executed.  THis creates an empty array called "megaArray" that will store the character options
+
     } else {
       var megaArray = [];
-      if(upperChoice) {
+      //THis If statement checks if each option has been selected, then its corresponding array of characters in concatenated to the megaArray.
+      if (upperChoice) {
         megaArray = megaArray.concat(uppercaseLetters);
       }
-      if(lowerChoice) {
+      if (lowerChoice) {
         megaArray = megaArray.concat(lowercaseLetters);
       }
       if (numberChoice) {
@@ -124,6 +133,7 @@ function generatePassword() {
       if (specialChoice) {
         megaArray = megaArray.concat(specialCharacters);
       }
+      //The following code is where the random password is generated
       var passwordString = "";
       for (var i = 0; i < passwordLength; i++) {
         var randomIndex = Math.floor(Math.random() * megaArray.length);
@@ -131,6 +141,7 @@ function generatePassword() {
       }
       return passwordString;
     }
+    //If non of the criteria above are met the alert invalid is returned
   } else {
     alert("invalid");
     return "";
